@@ -33,6 +33,7 @@ class ServiceData {
   num? totalRating;
   int? isFavourite;
   bool? customizable;
+  num? pricePerSqft;
   List<ServiceAddressMapping>? serviceAddressMapping;
   List<Option>? options;
 
@@ -112,6 +113,7 @@ class ServiceData {
       this.isEnableAdvancePayment,
       this.advancePaymentAmount,
       this.advancePaymentPercentage,
+      this.pricePerSqft,
       this.customizable});
 
   ServiceData.fromJson(Map<String, dynamic> json) {
@@ -167,6 +169,7 @@ class ServiceData {
     isEnableAdvancePayment = json[AdvancePaymentKey.isEnableAdvancePayment];
     advancePaymentAmount = json[AdvancePaymentKey.advancePaymentAmount];
     advancePaymentPercentage = json[AdvancePaymentKey.advancePaymentAmount];
+    pricePerSqft = json['price_per_sqft'];
     options = json['options'] != null
         ? (json['options'] as List).map((i) => Option.fromJson(i)).toList()
         : null;
@@ -194,6 +197,7 @@ class ServiceData {
     data['subcategory_name'] = this.subCategoryName;
     data['customizable'] = this.customizable;
     data['category_name'] = this.categoryName;
+    data['price_per_sqft'] = this.pricePerSqft;
     if (this.imageAttachments != null) {
       data['attchments'] = this.imageAttachments;
     }

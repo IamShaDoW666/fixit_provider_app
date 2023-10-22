@@ -6,7 +6,7 @@ const DEFAULT_LANGUAGE = 'en';
 
 const primaryColor = Color.fromARGB(255, 181, 93, 31);
 const DOMAIN_URL =
-    'https://yallakhedma.com'; // Don't add slash at the end of the url
+    'http://192.168.18.38:8000'; // Don't add slash at the end of the url
 const BASE_URL = "$DOMAIN_URL/api/";
 
 /// You can specify in Admin Panel, These will be used if you don't specify in Admin Panel
