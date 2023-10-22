@@ -7,6 +7,7 @@ import 'package:handyman_provider_flutter/utils/constant.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../utils/model_keys.dart';
+import 'option_model.dart';
 
 class ServiceData {
   int? id;
@@ -31,7 +32,9 @@ class ServiceData {
   num? totalReview;
   num? totalRating;
   int? isFavourite;
+  bool? customizable;
   List<ServiceAddressMapping>? serviceAddressMapping;
+  List<Option>? options;
 
   //Set Values
   num? totalAmount;
@@ -65,50 +68,51 @@ class ServiceData {
 
   bool? isSelected;
 
-  ServiceData({
-    this.id,
-    this.name,
-    this.imageAttachments,
-    this.providerSlotData,
-    this.categoryId,
-    this.providerId,
-    this.price,
-    this.priceFormat,
-    this.type,
-    this.discount,
-    this.duration,
-    this.status,
-    this.isSlot,
-    this.description,
-    this.isFeatured,
-    this.providerName,
-    this.subCategoryId,
-    this.providerImage,
-    this.cityId,
-    this.categoryName,
-    this.attchments,
-    this.totalReview,
-    this.totalRating,
-    this.isFavourite,
-    this.serviceAddressMapping,
-    this.totalAmount,
-    this.discountPrice,
-    this.taxAmount,
-    this.couponDiscountAmount,
-    this.dateTimeVal,
-    this.couponId,
-    this.subCategoryName,
-    this.qty,
-    this.address,
-    this.bookingAddressId,
-    this.appliedCouponData,
-    this.isSelected,
-    this.servicePackage,
-    this.advancePaymentSetting,
-    this.isEnableAdvancePayment,
-    this.advancePaymentAmount,
-    this.advancePaymentPercentage,
-  });
+  ServiceData(
+      {this.id,
+      this.name,
+      this.imageAttachments,
+      this.providerSlotData,
+      this.categoryId,
+      this.providerId,
+      this.price,
+      this.priceFormat,
+      this.type,
+      this.discount,
+      this.duration,
+      this.status,
+      this.isSlot,
+      this.description,
+      this.isFeatured,
+      this.providerName,
+      this.subCategoryId,
+      this.providerImage,
+      this.cityId,
+      this.categoryName,
+      this.attchments,
+      this.totalReview,
+      this.totalRating,
+      this.isFavourite,
+      this.serviceAddressMapping,
+      this.options,
+      this.totalAmount,
+      this.discountPrice,
+      this.taxAmount,
+      this.couponDiscountAmount,
+      this.dateTimeVal,
+      this.couponId,
+      this.subCategoryName,
+      this.qty,
+      this.address,
+      this.bookingAddressId,
+      this.appliedCouponData,
+      this.isSelected,
+      this.servicePackage,
+      this.advancePaymentSetting,
+      this.isEnableAdvancePayment,
+      this.advancePaymentAmount,
+      this.advancePaymentPercentage,
+      this.customizable});
 
   ServiceData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -129,10 +133,19 @@ class ServiceData {
     providerName = json['provider_name'];
     cityId = json['city_id'];
     categoryName = json['category_name'];
+    customizable = json['customizable'];
     //image_attchments = json['attchments'];
-    imageAttachments = json['attchments'] != null ? List<String>.from(json['attchments']) : null;
-    attchments = json['attchments_array'] != null ? (json['attchments_array'] as List).map((i) => Attachments.fromJson(i)).toList() : null;
-    providerSlotData = json['slots'] != null ? (json['slots'] as List).map((i) => SlotData.fromJson(i)).toList() : null;
+    imageAttachments = json['attchments'] != null
+        ? List<String>.from(json['attchments'])
+        : null;
+    attchments = json['attchments_array'] != null
+        ? (json['attchments_array'] as List)
+            .map((i) => Attachments.fromJson(i))
+            .toList()
+        : null;
+    providerSlotData = json['slots'] != null
+        ? (json['slots'] as List).map((i) => SlotData.fromJson(i)).toList()
+        : null;
     subCategoryName = json['subcategory_name'];
 
     totalReview = json['total_review'];
@@ -145,11 +158,18 @@ class ServiceData {
         serviceAddressMapping!.add(new ServiceAddressMapping.fromJson(v));
       });
     }
-    servicePackage = json['servicePackage'] != null ? (json['servicePackage'] as List).map((i) => PackageData.fromJson(i)).toList() : null;
+    servicePackage = json['servicePackage'] != null
+        ? (json['servicePackage'] as List)
+            .map((i) => PackageData.fromJson(i))
+            .toList()
+        : null;
     advancePaymentSetting = json[AdvancePaymentKey.advancePaymentSetting];
     isEnableAdvancePayment = json[AdvancePaymentKey.isEnableAdvancePayment];
     advancePaymentAmount = json[AdvancePaymentKey.advancePaymentAmount];
     advancePaymentPercentage = json[AdvancePaymentKey.advancePaymentAmount];
+    options = json['options'] != null
+        ? (json['options'] as List).map((i) => Option.fromJson(i)).toList()
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -172,7 +192,7 @@ class ServiceData {
     data['city_id'] = this.cityId;
     data['subcategory_id'] = this.subCategoryId;
     data['subcategory_name'] = this.subCategoryName;
-
+    data['customizable'] = this.customizable;
     data['category_name'] = this.categoryName;
     if (this.imageAttachments != null) {
       data['attchments'] = this.imageAttachments;
@@ -181,21 +201,29 @@ class ServiceData {
       data['slots'] = this.providerSlotData;
     }
     if (this.servicePackage != null) {
-      data['servicePackage'] = this.servicePackage!.map((v) => v.toJson()).toList();
+      data['servicePackage'] =
+          this.servicePackage!.map((v) => v.toJson()).toList();
     }
     data['total_review'] = this.totalReview;
     data['total_rating'] = this.totalRating;
     data['is_favourite'] = this.isFavourite;
     if (this.serviceAddressMapping != null) {
-      data['service_address_mapping'] = this.serviceAddressMapping!.map((v) => v.toJson()).toList();
+      data['service_address_mapping'] =
+          this.serviceAddressMapping!.map((v) => v.toJson()).toList();
     }
     if (this.attchments != null) {
-      data['attchments_array'] = this.attchments!.map((v) => v.toJson()).toList();
+      data['attchments_array'] =
+          this.attchments!.map((v) => v.toJson()).toList();
+    }
+    if (this.options != null) {
+      data['options'] = this.options!.map((v) => v.toJson()).toList();
     }
     data[AdvancePaymentKey.advancePaymentSetting] = this.advancePaymentSetting;
-    data[AdvancePaymentKey.isEnableAdvancePayment] = this.isEnableAdvancePayment;
+    data[AdvancePaymentKey.isEnableAdvancePayment] =
+        this.isEnableAdvancePayment;
     data[AdvancePaymentKey.advancePaymentAmount] = this.advancePaymentAmount;
-    data[AdvancePaymentKey.advancePaymentAmount] = this.advancePaymentPercentage;
+    data[AdvancePaymentKey.advancePaymentAmount] =
+        this.advancePaymentPercentage;
     return data;
   }
 }
