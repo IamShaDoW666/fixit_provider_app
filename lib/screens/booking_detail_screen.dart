@@ -723,6 +723,115 @@ class BookingDetailScreenState extends State<BookingDetailScreen> {
     return Offstage();
   }
 
+  void _handleStartClick({required BookingDetailResponse status}) {
+    showConfirmDialogCustom(
+      context,
+      title: languages.confirmationRequestTxt,
+      dialogType: DialogType.CONFIRMATION,
+      primaryColor: context.primaryColor,
+      negativeText: languages.lblNo,
+      positiveText: languages.lblYes,
+      onAccept: (c) {
+        startClick(status: status);
+      },
+    );
+  }
+
+  //region Start Service
+  void startClick({required BookingDetailResponse status}) async {
+    Map request = {
+      CommonKeys.id: status.bookingDetail!.id.validate(),
+      BookingUpdateKeys.startAt: formatDate(DateTime.now().toString(),
+          format: BOOKING_SAVE_FORMAT, isLanguageNeeded: false),
+      BookingUpdateKeys.endAt: status.bookingDetail!.endAt.validate(),
+      BookingUpdateKeys.durationDiff: 0,
+      BookingUpdateKeys.reason: "",
+      'status': BookingStatusKeys.inProgress,
+      BookingUpdateKeys.paymentStatus:
+          status.bookingDetail!.isAdvancePaymentDone
+              ? SERVICE_PAYMENT_STATUS_ADVANCE_PAID
+              : status.bookingDetail!.paymentStatus.validate(),
+    };
+
+    appStore.setLoading(true);
+
+    await updateBookingData(request).then((res) async {
+      toast(res.message!);
+
+      init();
+      setState(() {});
+    }).catchError((e) {
+      toast(e.toString(), print: true);
+    });
+
+    appStore.setLoading(false);
+  }
+
+  //region Done Service
+  void _handleDoneClick({required BookingDetailResponse status}) {
+    showConfirmDialogCustom(
+      context,
+      negativeText: languages.lblNo,
+      dialogType: DialogType.CONFIRMATION,
+      primaryColor: context.primaryColor,
+      title: 'End Services',
+      positiveText: languages.lblYes,
+      onAccept: (c) async {
+        String endDateTime =
+            DateFormat(BOOKING_SAVE_FORMAT).format(DateTime.now());
+
+        num durationDiff = DateTime.parse(endDateTime.validate())
+            .difference(
+                DateTime.parse(status.bookingDetail!.startAt.validate()))
+            .inSeconds;
+
+        Map request = {
+          CommonKeys.id: status.bookingDetail!.id.validate(),
+          BookingUpdateKeys.startAt: status.bookingDetail!.startAt.validate(),
+          BookingUpdateKeys.endAt: endDateTime,
+          BookingUpdateKeys.durationDiff: durationDiff,
+          BookingUpdateKeys.reason: 'Done',
+          'status': BookingStatusKeys.pendingApproval,
+          BookingUpdateKeys.paymentStatus:
+              status.bookingDetail!.isAdvancePaymentDone
+                  ? SERVICE_PAYMENT_STATUS_ADVANCE_PAID
+                  : status.bookingDetail!.paymentStatus.validate(),
+        };
+
+        /// Perform new calculations if service hourly
+        // if (status.bookingDetail!.isHourlyService) {
+        //   BookingAmountModel bookingAmountModel = finalCalculations(
+        //     servicePrice: status.bookingDetail!.amount.validate(),
+        //     appliedCouponData: status.couponData,
+        //     discount: status.service!.discount!,
+        //     taxes: status.bookingDetail!.taxes,
+        //     quantity: status.bookingDetail!.quantity.validate(),
+        //     selectedPackage: status.bookingDetail!.bookingPackage,
+        //     extraCharges: status.bookingDetail!.extraCharges,
+        //     serviceType: status.service!.type!,
+        //     bookingType: status.bookingDetail!.bookingType!,
+        //     durationDiff: durationDiff.toInt(),
+        //   );
+
+        //   request.addAll(bookingAmountModel.toBookingUpdateJson());
+        // }
+
+        appStore.setLoading(true);
+
+        await updateBookingData(request).then((res) async {
+          toast(res.message!);
+
+          appStore.setLoading(false);
+          init();
+          setState(() {});
+        }).catchError((e) {
+          appStore.setLoading(false);
+          toast(e.toString(), print: true);
+        });
+      },
+    );
+  }
+
   Widget handleHandyman({required BookingDetailResponse res}) {
     log(res.bookingDetail!.paymentStatus);
     if (res.bookingDetail!.status == BookingStatusKeys.accept) {
@@ -815,8 +924,14 @@ class BookingDetailScreenState extends State<BookingDetailScreen> {
     } else if (res.bookingDetail!.status == BookingStatusKeys.onGoing) {
       showBottomActionBar = true;
 
-      return Text(languages.lblWaitingForResponse, style: boldTextStyle())
-          .center();
+      return AppButton(
+        text: "Start",
+        textColor: Colors.white,
+        color: Colors.green,
+        onTap: () {
+          _handleStartClick(status: res);
+        },
+      ).paddingOnly(left: 16, right: 16, bottom: 16);
     } else if (res.bookingDetail!.status == BookingStatusKeys.complete) {
       // showBottomActionBar = true;
       if (res.bookingDetail!.paymentMethod == PAYMENT_METHOD_COD &&
@@ -846,10 +961,14 @@ class BookingDetailScreenState extends State<BookingDetailScreen> {
       }
     } else if (res.bookingDetail!.status == BookingStatusKeys.inProgress) {
       showBottomActionBar = true;
-
-      return Text(res.bookingDetail!.statusLabel.validate(),
-              style: boldTextStyle())
-          .center();
+      return AppButton(
+        text: 'Done',
+        textColor: Colors.white,
+        color: primaryColor,
+        onTap: () {
+          _handleDoneClick(status: res);
+        },
+      );
     }
     return Offstage();
   }
@@ -983,7 +1102,7 @@ class BookingDetailScreenState extends State<BookingDetailScreen> {
                   8.height,
 
                   /// Total Service Time
-                  _buildCounterWidget(value: res.data!),
+                  // _buildCounterWidget(value: res.data!),
 
                   ///Description Widget
                   descriptionWidget(value: res.data!),

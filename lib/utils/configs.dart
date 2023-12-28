@@ -1,7 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 
-const APP_NAME = 'Fixit Services';
+const APP_NAME = 'YK Partner';
 const DEFAULT_LANGUAGE = 'en';
 
 const primaryColor = Color.fromARGB(255, 181, 93, 31);
@@ -16,29 +16,25 @@ const IOS_LINK_FOR_PARTNER =
 const TERMS_CONDITION_URL = 'https://yallakhedma.com';
 const PRIVACY_POLICY_URL = 'https://yallakhedma.com';
 const INQUIRY_SUPPORT_EMAIL = 'info@yallakhedma.com';
-
 const GOOGLE_MAPS_API_KEY = 'Ert6pyCHJwjZjGSOBc18-3mJM8tRtIpoV3No8l1';
-
 const STRIPE_MERCHANT_COUNTRY_CODE = 'IN';
-
 DateTime todayDate = DateTime(2022, 8, 24);
 
 /// SADAD PAYMENT DETAIL
 const SADAD_API_URL = 'https://api-s.sadad.qa';
 const SADAD_PAY_URL = "https://d.sadad.qa";
-
 Country defaultCountry() {
   return Country(
-    phoneCode: '91',
-    countryCode: 'IN',
+    phoneCode: '971',
+    countryCode: 'UAE',
     e164Sc: 91,
     geographic: true,
     level: 1,
-    name: 'India',
+    name: 'UAE',
     example: '9123456789',
-    displayName: 'India (IN) [+91]',
-    displayNameNoCountryCode: 'India (IN)',
-    e164Key: '91-IN-0',
-    fullExampleWithPlusSign: '+919123456789',
+    displayName: 'Uae (AE) [+971]',
+    displayNameNoCountryCode: 'Uae (AE)',
+    e164Key: '971-AE-0',
+    fullExampleWithPlusSign: '+971565002940',
   );
 }

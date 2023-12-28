@@ -264,6 +264,15 @@ Future<BaseResponseModel> forgotPassword(Map request) async {
           request: request, method: HttpMethodType.POST)));
 }
 
+Future<BaseResponseModel> updateBookingData(Map request) async {
+  BaseResponseModel baseResponse = BaseResponseModel.fromJson(
+      await handleResponse(await buildHttpResponse('booking-update',
+          request: request, method: HttpMethodType.POST)));
+  LiveStream().emit('UpdateBookingList');
+
+  return baseResponse;
+}
+
 Future<CommonResponseModel> updateProfile(Map request) async {
   return CommonResponseModel.fromJson(await handleResponse(
       await buildHttpResponse('update-profile',

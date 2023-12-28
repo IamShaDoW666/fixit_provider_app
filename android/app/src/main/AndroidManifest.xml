@@ -20,7 +20,7 @@
         </intent>
     </queries>
    <application
-        android:label="Fixit Services"
+        android:label="YK Partner"
         android:icon="@mipmap/ic_launcher"
        tools:replace="android:label">
         <activity
