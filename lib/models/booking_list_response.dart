@@ -9,6 +9,7 @@ import 'package:handyman_provider_flutter/utils/constant.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../utils/model_keys.dart';
+import 'booking_option.dart';
 
 class BookingListResponse {
   List<BookingData>? data;
@@ -83,6 +84,7 @@ class BookingData {
   List<ExtraChargesModel>? extraCharges;
   String? bookingType;
   PackageData? bookingPackage;
+  List<BookingOption>? bookingOptions;
 
   num? finalTotalServicePrice;
   num? finalTotalTax;
@@ -119,54 +121,54 @@ class BookingData {
   num get totalExtraChargeAmount =>
       extraCharges.validate().sumByDouble((e) => e.total.validate());
 
-  BookingData({
-    this.address,
-    this.imageAttachments,
-    this.customerId,
-    this.bookingSlot,
-    this.customerName,
-    this.date,
-    this.description,
-    this.discount,
-    this.amount,
-    this.durationDiff,
-    this.durationDiffHour,
-    this.handyman,
-    this.couponData,
-    this.id,
-    this.paymentId,
-    this.paymentMethod,
-    this.paymentStatus,
-    this.providerId,
-    this.providerName,
-    // this.serviceAttachments,
-    this.bookingAttachments,
-    this.taxes,
-    this.serviceId,
-    this.serviceName,
-    this.status,
-    this.statusLabel,
-    this.type,
-    this.quantity,
-    this.totalCalculatedPrice,
-    this.bookingAddressId,
-    this.totalAmount,
-    this.totalReview,
-    this.totalRating,
-    this.isCancelled,
-    this.reason,
-    this.startAt,
-    this.endAt,
-    this.extraCharges,
-    this.bookingType,
-    this.bookingPackage,
-    this.paidAmount,
-    this.finalTotalServicePrice,
-    this.finalTotalTax,
-    this.finalSubTotal,
-    this.finalDiscountAmount,
-    this.finalCouponDiscountAmount,
-  });
+  BookingData(
+      {this.address,
+      this.imageAttachments,
+      this.customerId,
+      this.bookingSlot,
+      this.customerName,
+      this.date,
+      this.description,
+      this.discount,
+      this.amount,
+      this.durationDiff,
+      this.durationDiffHour,
+      this.handyman,
+      this.couponData,
+      this.id,
+      this.paymentId,
+      this.paymentMethod,
+      this.paymentStatus,
+      this.providerId,
+      this.providerName,
+      // this.serviceAttachments,
+      this.bookingAttachments,
+      this.taxes,
+      this.serviceId,
+      this.serviceName,
+      this.status,
+      this.statusLabel,
+      this.type,
+      this.quantity,
+      this.totalCalculatedPrice,
+      this.bookingAddressId,
+      this.totalAmount,
+      this.totalReview,
+      this.totalRating,
+      this.isCancelled,
+      this.reason,
+      this.startAt,
+      this.endAt,
+      this.extraCharges,
+      this.bookingType,
+      this.bookingPackage,
+      this.paidAmount,
+      this.finalTotalServicePrice,
+      this.finalTotalTax,
+      this.finalSubTotal,
+      this.finalDiscountAmount,
+      this.finalCouponDiscountAmount,
+      this.bookingOptions});
 
   factory BookingData.fromJson(Map<String, dynamic> json) {
     return BookingData(
@@ -180,6 +182,11 @@ class BookingData {
       bookingSlot: json['booking_slot'],
       durationDiff: json['duration_diff'],
       durationDiffHour: json['duration_diff_hour'],
+      bookingOptions: json['bookingOptions'] != null
+          ? (json['bookingOptions'] as List)
+              .map((e) => BookingOption.fromJson(e))
+              .toList()
+          : [],
       handyman: json['handyman'] != null
           ? (json['handyman'] as List).map((i) => Handyman.fromJson(i)).toList()
           : [],

@@ -21,7 +21,10 @@ class BookingDetailResponse {
   List<ServiceProof>? serviceProof;
   PostJobData? postRequestDetail;
 
-  bool get isMe => handymanData.validate().isNotEmpty ? handymanData.validate().first.id.validate() == appStore.userId.validate() : false;
+  bool get isMe => handymanData.validate().isNotEmpty
+      ? handymanData.validate().first.id.validate() ==
+          appStore.userId.validate()
+      : false;
 
   BookingDetailResponse({
     this.bookingDetail,
@@ -38,23 +41,33 @@ class BookingDetailResponse {
   });
 
   BookingDetailResponse.fromJson(Map<String, dynamic> json) {
-    bookingDetail = json['booking_detail'] != null ? new BookingData.fromJson(json['booking_detail']) : null;
-    service = json['service'] != null ? new ServiceData.fromJson(json['service']) : null;
-    customer = json['customer'] != null ? new UserData.fromJson(json['customer']) : null;
+    bookingDetail = json['booking_detail'] != null
+        ? new BookingData.fromJson(json['booking_detail'])
+        : null;
+    service = json['service'] != null
+        ? new ServiceData.fromJson(json['service'])
+        : null;
+    customer = json['customer'] != null
+        ? new UserData.fromJson(json['customer'])
+        : null;
     if (json['booking_activity'] != null) {
       bookingActivity = [];
       json['booking_activity'].forEach((v) {
         bookingActivity!.add(new BookingActivity.fromJson(v));
       });
     }
-    providerData = json['provider_data'] != null ? new UserData.fromJson(json['provider_data']) : null;
+    providerData = json['provider_data'] != null
+        ? new UserData.fromJson(json['provider_data'])
+        : null;
     if (json['rating_data'] != null) {
       ratingData = [];
       json['rating_data'].forEach((v) {
         ratingData!.add(new RatingData.fromJson(v));
       });
     }
-    couponData = json['coupon_data'] != null ? new CouponData.fromJson(json['coupon_data']) : null;
+    couponData = json['coupon_data'] != null
+        ? new CouponData.fromJson(json['coupon_data'])
+        : null;
 
     if (json['handyman_data'] != null) {
       handymanData = [];
@@ -68,7 +81,9 @@ class BookingDetailResponse {
         serviceProof!.add(new ServiceProof.fromJson(v));
       });
     }
-    postRequestDetail = json['post_request_detail'] != null ? PostJobData.fromJson(json['post_request_detail']) : null;
+    postRequestDetail = json['post_request_detail'] != null
+        ? PostJobData.fromJson(json['post_request_detail'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -83,7 +98,8 @@ class BookingDetailResponse {
       data['customer'] = this.customer!.toJson();
     }
     if (this.bookingActivity != null) {
-      data['booking_activity'] = this.bookingActivity!.map((v) => v.toJson()).toList();
+      data['booking_activity'] =
+          this.bookingActivity!.map((v) => v.toJson()).toList();
     }
     if (this.ratingData != null) {
       data['rating_data'] = this.ratingData!.map((v) => v.toJson()).toList();
@@ -95,10 +111,12 @@ class BookingDetailResponse {
       data['provider_data'] = this.providerData!.toJson();
     }
     if (this.handymanData != null) {
-      data['handyman_data'] = this.handymanData!.map((v) => v.toJson()).toList();
+      data['handyman_data'] =
+          this.handymanData!.map((v) => v.toJson()).toList();
     }
     if (this.serviceProof != null) {
-      data['service_proof'] = this.serviceProof!.map((v) => v.toJson()).toList();
+      data['service_proof'] =
+          this.serviceProof!.map((v) => v.toJson()).toList();
     }
     if (postRequestDetail != null) {
       data['post_request_detail'] = postRequestDetail?.toJson();
@@ -118,7 +136,16 @@ class CouponData {
   String? updatedAt;
   num? totalCalculatedValue;
 
-  CouponData({this.bookingId, this.code, this.createdAt, this.deletedAt, this.discount, this.discountType, this.id, this.updatedAt, this.totalCalculatedValue});
+  CouponData(
+      {this.bookingId,
+      this.code,
+      this.createdAt,
+      this.deletedAt,
+      this.discount,
+      this.discountType,
+      this.id,
+      this.updatedAt,
+      this.totalCalculatedValue});
 
   factory CouponData.fromJson(Map<String, dynamic> json) {
     return CouponData(
@@ -157,7 +184,15 @@ class BookingActivity {
   String? createdAt;
   String? updatedAt;
 
-  BookingActivity({this.id, this.bookingId, this.datetime, this.activityType, this.activityMessage, this.activityData, this.createdAt, this.updatedAt});
+  BookingActivity(
+      {this.id,
+      this.bookingId,
+      this.datetime,
+      this.activityType,
+      this.activityMessage,
+      this.activityData,
+      this.createdAt,
+      this.updatedAt});
 
   BookingActivity.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -235,7 +270,11 @@ class RatingData {
     handymanId = json['handyman_id'];
     customerId = json['customer_id'];
     handymanName = json['handyman_name'];
-    attachments = json['attchments_array'] != null ? (json['attchments_array'] as List).map((i) => Attachments.fromJson(i)).toList() : null;
+    attachments = json['attchments_array'] != null
+        ? (json['attchments_array'] as List)
+            .map((i) => Attachments.fromJson(i))
+            .toList()
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -255,7 +294,8 @@ class RatingData {
     data['customer_id'] = this.customerId;
     data['handyman_name'] = this.handymanName;
     if (this.attachments != null) {
-      data['attchments_array'] = this.attachments!.map((v) => v.toJson()).toList();
+      data['attchments_array'] =
+          this.attachments!.map((v) => v.toJson()).toList();
     }
     return data;
   }
