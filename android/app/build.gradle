@@ -23,13 +23,13 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'com.google.gms.google-services'
 
 def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
+   def keystorePropertiesFile = rootProject.file('key.properties')
+   if (keystorePropertiesFile.exists()) {
+       keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+   }
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 33
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -39,8 +39,8 @@ android {
         applicationId "com.yallakhedma.provider"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 59
-        versionName '10.0.2'
+        versionCode 60
+        versionName '10.0.3'
     }
 
     signingConfigs {
@@ -53,7 +53,9 @@ android {
    }
    buildTypes {
        release {
-           signingConfig signingConfigs.release
+            shrinkResources false
+            minifyEnabled false
+            signingConfig signingConfigs.release
        }
    }
 }
@@ -65,14 +67,7 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.30"
     implementation "androidx.appcompat:appcompat:1.4.2"
-
-
-
-
-
     implementation platform('com.google.firebase:firebase-bom:30.3.1')
     implementation 'com.google.firebase:firebase-analytics'
-//    implementation 'com.google.android.material:material:1.5.0'
-
-
+    implementation 'com.google.android.material:material:1.5.0'
 }

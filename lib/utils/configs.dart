@@ -23,18 +23,19 @@ DateTime todayDate = DateTime(2022, 8, 24);
 /// SADAD PAYMENT DETAIL
 const SADAD_API_URL = 'https://api-s.sadad.qa';
 const SADAD_PAY_URL = "https://d.sadad.qa";
+
 Country defaultCountry() {
   return Country(
-    phoneCode: '971',
-    countryCode: 'UAE',
+    phoneCode: '91',
+    countryCode: 'IN',
     e164Sc: 91,
     geographic: true,
     level: 1,
-    name: 'UAE',
+    name: 'India',
     example: '9123456789',
-    displayName: 'Uae (AE) [+971]',
-    displayNameNoCountryCode: 'Uae (AE)',
-    e164Key: '971-AE-0',
-    fullExampleWithPlusSign: '+971565002940',
+    displayName: 'India (IN) [+91]',
+    displayNameNoCountryCode: 'India (IN)',
+    e164Key: '91-IN-0',
+    fullExampleWithPlusSign: '+919123456789',
   );
 }
