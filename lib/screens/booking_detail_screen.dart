@@ -38,6 +38,7 @@ import 'package:nb_utils/nb_utils.dart';
 
 import '../components/base_scaffold_widget.dart';
 import '../components/empty_error_state_widget.dart';
+import '../components/options_widget.dart';
 import 'shimmer/booking_detail_shimmer.dart';
 
 class BookingDetailScreen extends StatefulWidget {
@@ -1201,6 +1202,12 @@ class BookingDetailScreenState extends State<BookingDetailScreen> {
                       ),
                     ],
                   ).paddingOnly(left: 16, right: 16, bottom: 16),
+
+                  // Option and Variants Display
+                  OptionsWidget(
+                    serviceData: res.data!.service,
+                    bookingData: res.data!.bookingDetail,
+                  ).paddingOnly(bottom: 16, left: 16, right: 16),
 
                   /// Price Detail Card
                   if (res.data!.bookingDetail != null &&

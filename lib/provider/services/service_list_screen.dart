@@ -39,7 +39,11 @@ class _ServiceListScreenState extends State<ServiceListScreen> {
   }
 
   Future<void> init() async {
-    future = getSearchList(page, search: searchList.text, perPage: 10, providerId: appStore.userId, services: services, lastPageCallback: (b) {
+    future = getSearchList(page,
+        search: searchList.text,
+        perPage: 10,
+        providerId: appStore.userId,
+        services: services, lastPageCallback: (b) {
       isLastPage = b;
     });
   }
@@ -77,13 +81,15 @@ class _ServiceListScreenState extends State<ServiceListScreen> {
               changeListType = !changeListType;
               setState(() {});
             },
-            icon: Image.asset(changeListType ? list : grid, height: 20, width: 20),
+            icon: Image.asset(changeListType ? list : grid,
+                height: 20, width: 20),
           ),
           IconButton(
             onPressed: () async {
               bool? res;
 
-              res = await AddServices().launch(context, pageRouteAnimation: PageRouteAnimation.Fade);
+              res = await AddServices()
+                  .launch(context, pageRouteAnimation: PageRouteAnimation.Fade);
 
               if (res ?? false) {
                 setPageToOne();
@@ -108,7 +114,10 @@ class _ServiceListScreenState extends State<ServiceListScreen> {
                 },
               );
             },
-            loadingWidget: ServiceListShimmer(width: changeListType ? context.width() : context.width() * 0.5 - 24),
+            loadingWidget: ServiceListShimmer(
+                width: changeListType
+                    ? context.width()
+                    : context.width() * 0.5 - 24),
             onSuccess: (list) {
               if (list.isEmpty) {
                 return NoDataWidget(
@@ -145,32 +154,45 @@ class _ServiceListScreenState extends State<ServiceListScreen> {
                     },
                     decoration: InputDecoration(
                       hintText: languages.lblSearchHere,
-                      prefixIcon: Icon(Icons.search, color: context.iconColor, size: 20),
+                      prefixIcon: Icon(Icons.search,
+                          color: context.iconColor, size: 20),
                       hintStyle: secondaryTextStyle(),
-                      border: OutlineInputBorder(borderRadius: radius(8), borderSide: BorderSide(width: 0, style: BorderStyle.none)),
+                      border: OutlineInputBorder(
+                          borderRadius: radius(8),
+                          borderSide:
+                              BorderSide(width: 0, style: BorderStyle.none)),
                       filled: true,
                       contentPadding: EdgeInsets.all(16),
-                      fillColor: appStore.isDarkMode ? cardDarkColor : cardColor,
+                      fillColor:
+                          appStore.isDarkMode ? cardDarkColor : cardColor,
                     ),
                   ).paddingOnly(left: 16, right: 16, top: 24, bottom: 8),
                   if (services.isNotEmpty)
                     Container(
                       alignment: Alignment.topLeft,
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                       child: AnimatedWrap(
                         spacing: 16.0,
                         runSpacing: 16.0,
-                        scaleConfiguration: ScaleConfiguration(duration: 400.milliseconds, delay: 50.milliseconds),
+                        scaleConfiguration: ScaleConfiguration(
+                            duration: 400.milliseconds, delay: 50.milliseconds),
                         listAnimationType: ListAnimationType.FadeIn,
-                        fadeInConfiguration: FadeInConfiguration(duration: 2.seconds),
+                        fadeInConfiguration:
+                            FadeInConfiguration(duration: 2.seconds),
                         alignment: WrapAlignment.start,
                         itemCount: services.length,
                         itemBuilder: (context, index) {
                           return ServiceComponent(
                             data: services[index],
-                            width: changeListType ? context.width() : context.width() * 0.5 - 24,
+                            width: changeListType
+                                ? context.width()
+                                : context.width() * 0.5 - 24,
                           ).onTap(() async {
-                            await ServiceDetailScreen(serviceId: services[index].id.validate()).launch(context).then((value) {
+                            await ServiceDetailScreen(
+                                    serviceId: services[index].id.validate())
+                                .launch(context)
+                                .then((value) {
                               if (value != null) {
                                 setPageToOne();
                               }
@@ -183,7 +205,8 @@ class _ServiceListScreenState extends State<ServiceListScreen> {
               );
             },
           ),
-          Observer(builder: (context) => LoaderWidget().visible(appStore.isLoading))
+          Observer(
+              builder: (context) => LoaderWidget().visible(appStore.isLoading))
         ],
       ),
     );

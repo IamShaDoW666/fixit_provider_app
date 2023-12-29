@@ -94,31 +94,31 @@ class _PaymentInfoComponentState extends State<PaymentInfoComponent> {
                         ],
                       ),
                     );
-                    return Container(
-                      decoration: boxDecorationDefault(color: context.scaffoldBackgroundColor),
-                      padding: EdgeInsets.all(16),
-                      margin: EdgeInsets.all(8),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(data.paymentMethod.validate().capitalizeFirstLetter(), style: boldTextStyle()),
-                                  4.height,
-                                  Text(formatDate(data.date.validate().toString(), format: DATE_FORMAT_9), style: secondaryTextStyle()),
-                                ],
-                              ),
-                              index != 0
-                                  ? PriceWidget(price: data.totalAmount.validate())
-                                  : PriceWidget(price: data.totalAmount.validate() + data.extraCharges.validate().sumByDouble((p0) => p0.total)),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
+                    // return Container(
+                    //   decoration: boxDecorationDefault(color: context.scaffoldBackgroundColor),
+                    //   padding: EdgeInsets.all(16),
+                    //   margin: EdgeInsets.all(8),
+                    //   child: Column(
+                    //     children: [
+                    //       Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //         children: [
+                    //           Column(
+                    //             crossAxisAlignment: CrossAxisAlignment.start,
+                    //             children: [
+                    //               Text(data.paymentMethod.validate().capitalizeFirstLetter(), style: boldTextStyle()),
+                    //               4.height,
+                    //               Text(formatDate(data.date.validate().toString(), format: DATE_FORMAT_9), style: secondaryTextStyle()),
+                    //             ],
+                    //           ),
+                    //           index != 0
+                    //               ? PriceWidget(price: data.totalAmount.validate())
+                    //               : PriceWidget(price: data.totalAmount.validate() + data.extraCharges.validate().sumByDouble((p0) => p0.total)),
+                    //         ],
+                    //       ),
+                    //     ],
+                    //   ),
+                    // );
                   },
                 );
               },
