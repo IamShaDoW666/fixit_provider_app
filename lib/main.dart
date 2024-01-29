@@ -79,7 +79,8 @@ void main() async {
 
   if (!isDesktop) {
     Firebase.initializeApp().then((value) {
-      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+      FlutterError.onError =
+          FirebaseCrashlytics.instance.recordFlutterFatalError;
 
       setupFirebaseRemoteConfig();
     }).catchError((e) {
@@ -93,7 +94,8 @@ void main() async {
 
   localeLanguageList = languageList();
 
-  appStore.setLanguage(getStringAsync(SELECTED_LANGUAGE_CODE, defaultValue: DEFAULT_LANGUAGE));
+  appStore.setLanguage(
+      getStringAsync(SELECTED_LANGUAGE_CODE, defaultValue: DEFAULT_LANGUAGE));
 
   await appStore.setLoggedIn(getBoolAsync(IS_LOGGED_IN));
 
@@ -115,17 +117,21 @@ class _MyAppState extends State<MyApp> {
   }
 
   void init() async {
-    OneSignal.shared.setNotificationOpenedHandler((OSNotificationOpenedResult notification) {
+    OneSignal.shared.setNotificationOpenedHandler(
+        (OSNotificationOpenedResult notification) {
       try {
         if (notification.notification.additionalData == null) return;
 
         if (notification.notification.additionalData!.containsKey('id')) {
-          String? notId = notification.notification.additionalData!["id"].toString();
+          String? notId =
+              notification.notification.additionalData!["id"].toString();
           if (notId.validate().isNotEmpty) {
             push(BookingDetailScreen(bookingId: notId.toString().toInt()));
           }
-        } else if (notification.notification.additionalData!.containsKey('sender_uid')) {
-          String? notId = notification.notification.additionalData!["sender_uid"];
+        } else if (notification.notification.additionalData!
+            .containsKey('sender_uid')) {
+          String? notId =
+              notification.notification.additionalData!["sender_uid"];
           if (notId.validate().isNotEmpty) {
             push(ChatListScreen());
           }
@@ -135,13 +141,14 @@ class _MyAppState extends State<MyApp> {
       }
     });
     afterBuildCreated(() {
-      int val = getIntAsync(THEME_MODE_INDEX, defaultValue: THEME_MODE_SYSTEM);
+      int val = getIntAsync(THEME_MODE_INDEX, defaultValue: THEME_MODE_LIGHT);
 
       if (val == THEME_MODE_LIGHT) {
         appStore.setDarkMode(false);
       } else if (val == THEME_MODE_DARK) {
-        appStore.setDarkMode(true);
+        appStore.setDarkMode(false);
       }
+      appStore.setDarkMode(false);
     });
   }
 
