@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 const APP_NAME = 'YK Partner';
 const DEFAULT_LANGUAGE = 'en';
 
-const primaryColor = Color.fromARGB(255, 181, 93, 31);
+const primaryColor = Color.fromARGB(255, 241, 119, 32);
 const DOMAIN_URL =
-    'http://192.168.18.38:8000'; // Don't add slash at the end of the url
+    'https://yallakhedma.com'; // Don't add slash at the end of the url
 const BASE_URL = "$DOMAIN_URL/api/";
 
 /// You can specify in Admin Panel, These will be used if you don't specify in Admin Panel
 const IOS_LINK_FOR_PARTNER =
-    "https://apps.apple.com/in/app/handyman-provider-app/id1596025324";
+    "https://apps.apple.com/us/app/yk-partner/id6475168054";
 
-const TERMS_CONDITION_URL = 'https://yallakhedma.com';
-const PRIVACY_POLICY_URL = 'https://yallakhedma.com';
+const TERMS_CONDITION_URL = 'https://yallakhedma.com/term-conditions';
+const PRIVACY_POLICY_URL = 'https://yallakhedma.com/privacy-policy';
 const INQUIRY_SUPPORT_EMAIL = 'info@yallakhedma.com';
-const GOOGLE_MAPS_API_KEY = 'Ert6pyCHJwjZjGSOBc18-3mJM8tRtIpoV3No8l1';
-const STRIPE_MERCHANT_COUNTRY_CODE = 'IN';
+const GOOGLE_MAPS_API_KEY = 'AIzaSyC7e7Nkthx5ptF8q2xdcAiQuH-KhQpUkwM';
+const STRIPE_MERCHANT_COUNTRY_CODE = 'AE';
 DateTime todayDate = DateTime(2022, 8, 24);
 
 /// SADAD PAYMENT DETAIL
@@ -26,16 +26,16 @@ const SADAD_PAY_URL = "https://d.sadad.qa";
 
 Country defaultCountry() {
   return Country(
-    phoneCode: '91',
-    countryCode: 'IN',
-    e164Sc: 91,
+    phoneCode: '971',
+    countryCode: 'AE',
+    e164Sc: 971,
     geographic: true,
     level: 1,
-    name: 'India',
+    name: 'U.A.W',
     example: '9123456789',
-    displayName: 'India (IN) [+91]',
-    displayNameNoCountryCode: 'India (IN)',
-    e164Key: '91-IN-0',
-    fullExampleWithPlusSign: '+919123456789',
+    displayName: 'U.A.E (AE) [+971]',
+    displayNameNoCountryCode: 'U.A.E (AE)',
+    e164Key: '971-AE-0',
+    fullExampleWithPlusSign: '+971565002940',
   );
 }
