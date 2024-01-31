@@ -1,0 +1,15 @@
+{
+  "" : {
+    "const-values" : "/Users/roshanaqther/Desktop/ykpartner/ios/build/Runner.build/Release-iphoneos/OneSignalNotificationServiceExtension.build/Objects-normal/arm64/OneSignalNotificationServiceExtension-master.swiftconstvalues",
+    "dependencies" : "/Users/roshanaqther/Desktop/ykpartner/ios/build/Runner.build/Release-iphoneos/OneSignalNotificationServiceExtension.build/Objects-normal/arm64/OneSignalNotificationServiceExtension-master.d",
+    "diagnostics" : "/Users/roshanaqther/Desktop/ykpartner/ios/build/Runner.build/Release-iphoneos/OneSignalNotificationServiceExtension.build/Objects-normal/arm64/OneSignalNotificationServiceExtension-master.dia",
+    "emit-module-dependencies" : "/Users/roshanaqther/Desktop/ykpartner/ios/build/Runner.build/Release-iphoneos/OneSignalNotificationServiceExtension.build/Objects-normal/arm64/OneSignalNotificationServiceExtension-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/roshanaqther/Desktop/ykpartner/ios/build/Runner.build/Release-iphoneos/OneSignalNotificationServiceExtension.build/Objects-normal/arm64/OneSignalNotificationServiceExtension-master-emit-module.dia",
+    "swift-dependencies" : "/Users/roshanaqther/Desktop/ykpartner/ios/build/Runner.build/Release-iphoneos/OneSignalNotificationServiceExtension.build/Objects-normal/arm64/OneSignalNotificationServiceExtension-master.swiftdeps"
+  },
+  "/Users/roshanaqther/Desktop/ykpartner/ios/OneSignalNotificationServiceExtension/NotificationService.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-iphoneos/OneSignalNotificationServiceExtension.build/Objects-normal/arm64/NotificationService.o",
+    "llvm-bc" : "/Users/roshanaqther/Desktop/ykpartner/ios/build/Runner.build/Release-iphoneos/OneSignalNotificationServiceExtension.build/Objects-normal/arm64/NotificationService.bc",
+    "object" : "/Users/roshanaqther/Desktop/ykpartner/ios/build/Runner.build/Release-iphoneos/OneSignalNotificationServiceExtension.build/Objects-normal/arm64/NotificationService.o"
+  }
+}
