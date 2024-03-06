@@ -66,6 +66,8 @@ class BookingData {
   List<TaxData>? taxes;
   num? totalAmount;
   num? paidAmount;
+  num? cashHandlingCharge;
+  num? uaevat;
 
   String? durationDiffHour;
   List<Handyman>? handyman;
@@ -166,6 +168,8 @@ class BookingData {
       this.finalTotalServicePrice,
       this.finalTotalTax,
       this.finalSubTotal,
+      this.uaevat,
+      this.cashHandlingCharge,
       this.finalDiscountAmount,
       this.finalCouponDiscountAmount,
       this.bookingOptions});
@@ -238,6 +242,8 @@ class BookingData {
       finalTotalServicePrice: json['final_total_service_price'],
       finalTotalTax: json['final_total_tax'],
       finalSubTotal: json['final_sub_total'],
+      uaevat: json['uae_vat'],
+      cashHandlingCharge: json['cash_handling_charge'],
       finalDiscountAmount: json['final_discount_amount'],
       finalCouponDiscountAmount: json['final_coupon_discount_amount'],
     );
@@ -289,10 +295,14 @@ class BookingData {
     data['reason'] = this.reason;
     data['is_cancelled'] = this.isCancelled;
     data['start_at'] = this.startAt;
+    data['cash_handling_charge'] = this.cashHandlingCharge;
     data['end_at'] = this.endAt;
     if (this.extraCharges != null) {
       data['extra_charges'] =
           this.extraCharges!.map((v) => v.toJson()).toList();
+    }
+    if (this.uaevat != null) {
+      data['uae_vat'] = this.uaevat;
     }
     data['booking_type'] = this.bookingType;
     data[AdvancePaymentKey.advancePaidAmount] = this.amount;

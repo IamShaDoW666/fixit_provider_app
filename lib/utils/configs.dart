@@ -6,8 +6,9 @@ const DEFAULT_LANGUAGE = 'en';
 
 const primaryColor = Color.fromARGB(255, 241, 119, 32);
 const DOMAIN_URL =
-    'https://yallakhedma.com'; // Don't add slash at the end of the url
+    'https://yallakhedma.com'; // Don't add slash at the end of the url https://yallakhedma.com
 const BASE_URL = "$DOMAIN_URL/api/";
+//http://192.168.18.38:8000
 
 /// You can specify in Admin Panel, These will be used if you don't specify in Admin Panel
 const IOS_LINK_FOR_PARTNER =

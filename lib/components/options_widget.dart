@@ -24,8 +24,8 @@ class OptionsWidget extends StatelessWidget {
             width: context.width(),
             decoration: boxDecorationDefault(color: context.cardColor),
             child: Column(
-              children:
-                  List.generate(bookingData!.bookingOptions!.length, (index) {
+              children: List.generate(
+                  bookingData!.bookingOptions!.length.validate(), (index) {
                 final data = bookingData!.bookingOptions![index];
                 if (data.variant == null && data.quantity! > 0) {
                   return Row(
@@ -48,6 +48,21 @@ class OptionsWidget extends StatelessWidget {
                   ).paddingSymmetric(vertical: 8);
                 }
                 if (data.variant != null) {
+                  if (data.option!.typeInt == 2) {
+                    return Row(
+                      children: [
+                        Text(data.option!.name.validate()),
+                        SizedBox(
+                            width: context.width() * 0.4,
+                            child: Marquee(
+                              child: Text(
+                                data.variant!.name.validate(),
+                              ),
+                            ))
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    ).paddingSymmetric(vertical: 8);
+                  }
                   return Row(
                     children: [
                       Text(data.option!.name.validate()),
