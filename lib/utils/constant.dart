@@ -217,10 +217,10 @@ const type = "type";
 //endregion
 
 //region default handyman login
-const DEFAULT_PROVIDER_EMAIL = 'demo@provider.com';
-const DEFAULT_HANDYMAN_EMAIL = 'demo@handyman.com';
-const DEFAULT_PASS = '12345678';
-const DEFAULT_PASSWORD_FOR_FIREBASE = '12345678';
+const DEFAULT_PROVIDER_EMAIL = '';
+const DEFAULT_HANDYMAN_EMAIL = '';
+const DEFAULT_PASS = '';
+const DEFAULT_PASSWORD_FOR_FIREBASE = '';
 //endregion
 
 //region currency
