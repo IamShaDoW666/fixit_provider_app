@@ -3,6 +3,7 @@ const APP_PACKAGE_NAME = "com.iqonic.provider";
 
 //region Configs
 const DECIMAL_POINT = 2;
+const DECIMAL_POINT_DISPLAY = 0;
 const PER_PAGE_ITEM = 25;
 const PER_PAGE_ITEM_ALL = 'all';
 const PLAN_REMAINING_DAYS = 15;

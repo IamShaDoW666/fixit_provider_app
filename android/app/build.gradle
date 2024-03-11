@@ -39,8 +39,8 @@ android {
         applicationId "com.yallakhedma.provider"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 62
-        versionName '10.1.1'
+        versionCode 63
+        versionName '10.1.2'
     }
 
     signingConfigs {

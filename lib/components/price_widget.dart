@@ -33,7 +33,8 @@ class PriceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextDecoration? textDecoration() => isLineThroughEnabled ? TextDecoration.lineThrough : null;
+    TextDecoration? textDecoration() =>
+        isLineThroughEnabled ? TextDecoration.lineThrough : null;
 
     TextStyle _textStyle({int? aSize}) {
       return isBoldText
@@ -65,10 +66,13 @@ class PriceWidget extends StatelessWidget {
                   Text(languages.lblFree, style: _textStyle())
                 else
                   Text(
-                    "${isCurrencyPositionLeft ? appStore.currencySymbol : ''}${price.validate().toStringAsFixed(decimalPoint ?? DECIMAL_POINT).formatNumberWithComma()}${isCurrencyPositionRight ? appStore.currencySymbol : ''}",
+                    "${isCurrencyPositionLeft ? appStore.currencySymbol : ''}${price.validate().toStringAsFixed(decimalPoint ?? DECIMAL_POINT_DISPLAY).formatNumberWithComma()}${isCurrencyPositionRight ? appStore.currencySymbol : ''}",
                     style: _textStyle(),
                   ),
-                if (isHourlyService) Text('/${languages.lblHr}', style: secondaryTextStyle(color: hourlyTextColor, size: 14)),
+                if (isHourlyService)
+                  Text('/${languages.lblHr}',
+                      style:
+                          secondaryTextStyle(color: hourlyTextColor, size: 14)),
               ],
             ),
           ],
