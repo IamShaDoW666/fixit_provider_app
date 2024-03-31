@@ -311,6 +311,9 @@ class LanguageEn extends Languages {
   String get lblEdit => 'Edit';
 
   @override
+  String get lblCity => 'City :';
+
+  @override
   String get lblDelete => 'Delete';
 
   @override
@@ -318,6 +321,12 @@ class LanguageEn extends Languages {
 
   @override
   String get lblServices => 'Services';
+
+  @override
+  String get buildingno => 'Building Name : ';
+
+  @override
+  String get apartmentno => 'Apartment Number : ';
 
   @override
   String get lblEditService => 'Edit Service';
@@ -1298,7 +1307,7 @@ class LanguageEn extends Languages {
   String get accepted => 'Accepted';
 
   @override
-  String get onGoing => 'On Going';
+  String get onGoing => 'Onthe Way';
 
   @override
   String get inProgress => 'In Progress';

@@ -27,7 +27,12 @@ class BasicInfoComponent extends StatefulWidget {
   final int flag;
   final BookingData? bookingDetail;
 
-  BasicInfoComponent(this.flag, {this.customerData, this.handymanData, this.providerData, this.service, this.bookingDetail});
+  BasicInfoComponent(this.flag,
+      {this.customerData,
+      this.handymanData,
+      this.providerData,
+      this.service,
+      this.bookingDetail});
 
   @override
   BasicInfoComponentState createState() => BasicInfoComponentState();
@@ -44,6 +49,7 @@ class BasicInfoComponentState extends State<BasicInfoComponent> {
   String? name;
   String? contactNumber;
   String? profileUrl;
+  String? building;
   int? profileId;
   int? handymanRating;
 
@@ -61,10 +67,13 @@ class BasicInfoComponentState extends State<BasicInfoComponent> {
       name = widget.customerData!.displayName.validate();
       profileUrl = widget.customerData!.profileImage.validate();
       contactNumber = widget.customerData!.contactNumber.validate();
+      building = widget.bookingDetail!.building.validate();
       address = widget.customerData!.address.validate();
 
       userData = widget.customerData!;
-      await userService.getUser(email: widget.customerData!.email.validate()).then((value) {
+      await userService
+          .getUser(email: widget.customerData!.email.validate())
+          .then((value) {
         widget.customerData!.uid = value.uid;
       }).catchError((e) {
         log(e.toString());
@@ -77,7 +86,9 @@ class BasicInfoComponentState extends State<BasicInfoComponent> {
       address = widget.handymanData!.address.validate();
 
       userData = widget.handymanData!;
-      await userService.getUser(email: widget.handymanData!.email.validate()).then((value) {
+      await userService
+          .getUser(email: widget.handymanData!.email.validate())
+          .then((value) {
         widget.handymanData!.uid = value.uid;
       }).catchError((e) {
         log(e.toString());
@@ -109,14 +120,16 @@ class BasicInfoComponentState extends State<BasicInfoComponent> {
             children: [
               Row(
                 children: [
-                  if (profileUrl.validate().isNotEmpty) ImageBorder(src: profileUrl.validate(), height: 65),
+                  if (profileUrl.validate().isNotEmpty)
+                    ImageBorder(src: profileUrl.validate(), height: 65),
                   16.width,
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-                          HandymanNameWidget(name: name.validate(),size: 14).flexible(),
+                          HandymanNameWidget(name: name.validate(), size: 14)
+                              .flexible(),
                           if (widget.flag == 1)
                             Row(
                               children: [
@@ -127,35 +140,91 @@ class BasicInfoComponentState extends State<BasicInfoComponent> {
                         ],
                       ),
                       10.height,
-                      if (userData.email.validate().isNotEmpty && widget.flag == 0 && widget.bookingDetail!.canCustomerContact)
+                      if (userData.email.validate().isNotEmpty &&
+                          widget.flag == 0 &&
+                          widget.bookingDetail!.canCustomerContact)
                         Row(
                           children: [
-                            ic_message.iconImage(size: 16, color: textSecondaryColorGlobal),
+                            ic_message.iconImage(
+                                size: 16, color: textSecondaryColorGlobal),
                             6.width,
-                            Text(userData.email.validate(), style: secondaryTextStyle()).flexible(),
+                            Text(userData.email.validate(),
+                                    style: secondaryTextStyle())
+                                .flexible(),
                           ],
                         ).onTap(() {
                           launchMail(userData.email.validate());
                         }),
-                      if (widget.bookingDetail != null && widget.flag == 0 && widget.bookingDetail!.canCustomerContact)
+                      if (widget.customerData != null)
+                        Column(
+                          children: [
+                            Row(
+                              children: [
+                                ic_location.iconImage(
+                                    size: 16, color: textSecondaryColorGlobal),
+                                6.width,
+                                Text(languages.lblCity),
+                                Text(widget.bookingDetail!.home.validate(),
+                                        style: secondaryTextStyle())
+                                    .flexible(),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                ic_home.iconImage(
+                                    size: 16, color: textSecondaryColorGlobal),
+                                6.width,
+                                Text(languages.apartmentno),
+                                Text(widget.bookingDetail!.apartment.validate(),
+                                        style: secondaryTextStyle())
+                                    .flexible(),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                ic_info.iconImage(
+                                    size: 16, color: textSecondaryColorGlobal),
+                                6.width,
+                                Text(languages.buildingno),
+                                Text(widget.bookingDetail!.building.validate(),
+                                        style: secondaryTextStyle())
+                                    .flexible(),
+                              ],
+                            ),
+                          ],
+                        ),
+
+                      if (widget.bookingDetail != null &&
+                          widget.flag == 0 &&
+                          widget.bookingDetail!.canCustomerContact)
                         Column(
                           children: [
                             8.height,
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                servicesAddress.iconImage(size: 18, color: textSecondaryColorGlobal),
+                                servicesAddress.iconImage(
+                                    size: 18, color: textSecondaryColorGlobal),
                                 3.width,
-                                Text(widget.bookingDetail!.address.validate(), style: secondaryTextStyle()).flexible(),
+                                Text(widget.bookingDetail!.address.validate(),
+                                        style: secondaryTextStyle())
+                                    .flexible(),
                               ],
                             ),
                           ],
                         ).onTap(() {
-                          commonLaunchUrl('$GOOGLE_MAP_PREFIX${Uri.encodeFull(widget.bookingDetail!.address.validate())}', launchMode: LaunchMode.externalApplication);
+                          commonLaunchUrl(
+                              '$GOOGLE_MAP_PREFIX${Uri.encodeFull(widget.bookingDetail!.address.validate())}',
+                              launchMode: LaunchMode.externalApplication);
                         }),
-                      if (widget.flag == 1) DisabledRatingBarWidget(rating: userData.handymanRating.validate().toDouble(), size: 14),
+                      if (widget.flag == 1)
+                        DisabledRatingBarWidget(
+                            rating:
+                                userData.handymanRating.validate().toDouble(),
+                            size: 14),
+                      // Text(widget.bookingDetail!.building.toString()),
                     ],
-                  ).expand()
+                  ).expand(),
                 ],
               ),
               if (widget.bookingDetail!.canCustomerContact)
@@ -171,9 +240,11 @@ class BasicInfoComponentState extends State<BasicInfoComponent> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Image.asset(calling, color: white, height: 18, width: 18),
+                                Image.asset(calling,
+                                    color: white, height: 18, width: 18),
                                 16.width,
-                                Text(languages.lblCall, style: boldTextStyle(color: white)),
+                                Text(languages.lblCall,
+                                    style: boldTextStyle(color: white)),
                               ],
                             ),
                             width: context.width(),
@@ -188,7 +259,10 @@ class BasicInfoComponentState extends State<BasicInfoComponent> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset(chat, color: context.iconColor, height: 18, width: 18),
+                              Image.asset(chat,
+                                  color: context.iconColor,
+                                  height: 18,
+                                  width: 18),
                               16.width,
                               Text(languages.lblChat, style: boldTextStyle()),
                             ],
@@ -198,13 +272,16 @@ class BasicInfoComponentState extends State<BasicInfoComponent> {
                           color: context.scaffoldBackgroundColor,
                           onTap: () async {
                             toast(languages.pleaseWaitWhileWeLoadChatDetails);
-                            UserData? user = await userService.getUserNull(email: userData.email.validate());
+                            UserData? user = await userService.getUserNull(
+                                email: userData.email.validate());
                             if (user != null) {
                               Fluttertoast.cancel();
-                              UserChatScreen(receiverUser: user).launch(context);
+                              UserChatScreen(receiverUser: user)
+                                  .launch(context);
                             } else {
                               Fluttertoast.cancel();
-                              toast("${userData.firstName} ${languages.isNotAvailableForChat}");
+                              toast(
+                                  "${userData.firstName} ${languages.isNotAvailableForChat}");
                             }
                           },
                         ).expand(),

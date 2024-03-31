@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class Languages {
-  static Languages of(BuildContext context) => Localizations.of<Languages>(context, Languages)!;
+  static Languages of(BuildContext context) =>
+      Localizations.of<Languages>(context, Languages)!;
 
   String planAboutToExpire(int days);
 
@@ -303,9 +304,15 @@ abstract class Languages {
 
   String get lblTax;
 
+  String get lblCity;
+
   String get lblCoupon;
 
   String get lblTotalAmount;
+
+  String get apartmentno;
+
+  String get buildingno;
 
   String get lblOnBasisOf;
 

@@ -449,50 +449,50 @@ class _AddServicesState extends State<AddServices> {
                 ).expand(),
               ],
             ),*/
-            AppTextField(
-              textFieldType: TextFieldType.MULTILINE,
-              minLines: 5,
-              controller: descriptionCont,
-              focus: descriptionFocus,
-              errorThisFieldRequired: languages.hintRequired,
-              decoration: inputDecoration(
-                context,
-                hint: languages.hintDescription,
-                fillColor: context.scaffoldBackgroundColor,
-              ),
-            ),
+            // AppTextField(
+            //   textFieldType: TextFieldType.MULTILINE,
+            //   minLines: 5,
+            //   controller: descriptionCont,
+            //   focus: descriptionFocus,
+            //   errorThisFieldRequired: languages.hintRequired,
+            //   decoration: inputDecoration(
+            //     context,
+            //     hint: languages.hintDescription,
+            //     fillColor: context.scaffoldBackgroundColor,
+            //   ),
+            // ),
             if (isUpdate)
-              AppButton(
-                text: "Options",
-                height: 40,
-                color: white,
-                textStyle: boldTextStyle(color: primaryColor),
-                width: context.width(),
-                onTap: () {
-                  OptionListScreen(service: widget.data).launch(context);
-                },
+              // AppButton(
+              //   text: "Options",
+              //   height: 40,
+              //   color: white,
+              //   textStyle: boldTextStyle(color: primaryColor),
+              //   width: context.width(),
+              //   onTap: () {
+              //     OptionListScreen(service: widget.data).launch(context);
+              //   },
+              // ),
+              Container(
+                decoration: boxDecorationDefault(
+                    color: context.scaffoldBackgroundColor,
+                    borderRadius: radius()),
+                child: CheckboxListTile(
+                  value: isFeature,
+                  contentPadding: EdgeInsets.zero,
+                  checkboxShape: RoundedRectangleBorder(
+                      side: BorderSide(color: primaryColor),
+                      borderRadius: radius(4)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: radius(),
+                      side: BorderSide(color: primaryColor)),
+                  title: Text(languages.hintSetAsFeature,
+                      style: secondaryTextStyle()),
+                  onChanged: (bool? v) {
+                    isFeature = v.validate();
+                    setState(() {});
+                  },
+                ).paddingSymmetric(horizontal: 16),
               ),
-            Container(
-              decoration: boxDecorationDefault(
-                  color: context.scaffoldBackgroundColor,
-                  borderRadius: radius()),
-              child: CheckboxListTile(
-                value: isFeature,
-                contentPadding: EdgeInsets.zero,
-                checkboxShape: RoundedRectangleBorder(
-                    side: BorderSide(color: primaryColor),
-                    borderRadius: radius(4)),
-                shape: RoundedRectangleBorder(
-                    borderRadius: radius(),
-                    side: BorderSide(color: primaryColor)),
-                title: Text(languages.hintSetAsFeature,
-                    style: secondaryTextStyle()),
-                onChanged: (bool? v) {
-                  isFeature = v.validate();
-                  setState(() {});
-                },
-              ).paddingSymmetric(horizontal: 16),
-            ),
             Container(
               decoration: boxDecorationDefault(
                   color: context.scaffoldBackgroundColor,
