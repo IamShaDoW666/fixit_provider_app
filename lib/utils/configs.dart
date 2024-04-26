@@ -6,7 +6,7 @@ const DEFAULT_LANGUAGE = 'en';
 
 const primaryColor = Color.fromARGB(255, 241, 119, 32);
 const DOMAIN_URL =
-    'http://192.168.18.38:8000'; // Don't add slash at the end of the url https://yallakhedma.com
+    'https://yallakhedma.com'; // Don't add slash at the end of the url https://yallakhedma.com
 const BASE_URL = "$DOMAIN_URL/api/";
 //http://192.168.18.38:8000
 
