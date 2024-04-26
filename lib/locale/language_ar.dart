@@ -11,7 +11,14 @@ class LanguageAr extends Languages {
   @override
   String get provider => 'مزود';
 
+  @override
+  String get chooseImages => "Choose Images";
+
+  @override
   String get lblCity => 'City';
+
+  @override
+  String get remove => 'Remove';
 
   @override
   String get lblShowingOnly4Handyman => 'اضهار ٤ عمال فقط';

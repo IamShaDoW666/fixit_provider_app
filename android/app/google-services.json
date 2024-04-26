@@ -7,14 +7,22 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:482957258448:android:e9cd1766f5d0cd719038d5",
+        "mobilesdk_app_id": "1:482957258448:android:5ccd4b6ae2ac28389038d5",
         "android_client_info": {
-          "package_name": "com.yallakhedma.provider"
+          "package_name": "com.marsvisiongroup.yk"
         }
       },
       "oauth_client": [
         {
-          "client_id": "482957258448-4rcjn9dut5ndgk1g5kjkkt5ruf78l49q.apps.googleusercontent.com",
+          "client_id": "482957258448-t64e01qn858prd42gjqrkjeargtcq7jq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.marsvisiongroup.yk",
+            "certificate_hash": "f6cd50f3d4f9727b93544c4dff5d66875312a1f2"
+          }
+        },
+        {
+          "client_id": "482957258448-6orkdbsb7bvti49p95vgic6ckg16taom.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +37,59 @@
             {
               "client_id": "482957258448-4rcjn9dut5ndgk1g5kjkkt5ruf78l49q.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "482957258448-aa0vdtgba3kn22nmabi2486fem98ttek.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.marsvisiongroup.yk",
+                "app_store_id": "6475085221"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482957258448:android:e9cd1766f5d0cd719038d5",
+        "android_client_info": {
+          "package_name": "com.yallakhedma.provider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482957258448-plhdbshu3fcrfugeurhe8jlt6e18kl5c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yallakhedma.provider",
+            "certificate_hash": "10f10006b4a591fdb3f73d9b0247f634c589e9b2"
+          }
+        },
+        {
+          "client_id": "482957258448-6orkdbsb7bvti49p95vgic6ckg16taom.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeqv1J0x0DL5NmsVABukHN9_blcMrFwKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482957258448-4rcjn9dut5ndgk1g5kjkkt5ruf78l49q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "482957258448-aa0vdtgba3kn22nmabi2486fem98ttek.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.marsvisiongroup.yk",
+                "app_store_id": "6475085221"
+              }
             }
           ]
         }

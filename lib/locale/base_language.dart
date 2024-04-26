@@ -304,6 +304,10 @@ abstract class Languages {
 
   String get lblTax;
 
+  String get remove;
+
+  String get chooseImages;
+
   String get lblCity;
 
   String get lblCoupon;

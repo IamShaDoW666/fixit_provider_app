@@ -130,6 +130,9 @@ class LanguageEn extends Languages {
   String get decline => 'Decline';
 
   @override
+  String get chooseImages => "Choose Images";
+
+  @override
   String get noDataFound => 'No Data Found';
 
   @override
@@ -1105,6 +1108,9 @@ class LanguageEn extends Languages {
   String get packages => 'Packages';
 
   @override
+  String get remove => 'Remove';
+
+  @override
   String get packageService => 'Package Service';
 
   @override
@@ -1325,10 +1331,10 @@ class LanguageEn extends Languages {
   String get failed => 'Failed';
 
   @override
-  String get completed => 'Completed';
+  String get completed => 'Payment Pending';
 
   @override
-  String get pendingApproval => 'Pending Approval';
+  String get pendingApproval => 'Work Completed';
 
   @override
   String get waiting => 'Waiting';

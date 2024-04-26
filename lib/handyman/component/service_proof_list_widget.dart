@@ -49,13 +49,20 @@ class _ServiceProofListWidgetState extends State<ServiceProofListWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (data.title.validate().isNotEmpty) Text(data.title.validate(), style: boldTextStyle(), maxLines: 1, overflow: TextOverflow.ellipsis),
+                    if (data.title.validate().isNotEmpty)
+                      Text(data.title.validate(),
+                          style: boldTextStyle(),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis),
                     if (data.description.validate().isNotEmpty)
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           8.height,
-                          Text(data.description.validate(), style: secondaryTextStyle(), maxLines: 1, overflow: TextOverflow.ellipsis),
+                          Text(data.description.validate(),
+                              style: secondaryTextStyle(),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis),
                         ],
                       ),
                     if (data.attachments.validate().isNotEmpty)
@@ -77,7 +84,10 @@ class _ServiceProofListWidgetState extends State<ServiceProofListWidget> {
                                   fit: BoxFit.cover,
                                 ),
                               ).onTap(() {
-                                ZoomImageScreen(galleryImages: data.attachments!, index: i).launch(context);
+                                ZoomImageScreen(
+                                        galleryImages: data.attachments!,
+                                        index: i)
+                                    .launch(context);
                               });
                             },
                           ),

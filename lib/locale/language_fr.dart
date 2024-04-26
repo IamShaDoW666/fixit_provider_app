@@ -21,6 +21,12 @@ class LanguageFr extends Languages {
   String get apartmentno => 'Apartment Number : ';
 
   @override
+  String get remove => 'Remove';
+
+  @override
+  String get chooseImages => "Choose Images";
+
+  @override
   String get lblShowingOnly4Handyman => 'Montrant seulement 4 bricoles';
 
   @override

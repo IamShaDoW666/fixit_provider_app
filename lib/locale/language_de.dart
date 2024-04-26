@@ -11,14 +11,19 @@ class LanguageDe extends Languages {
   @override
   String get provider => 'Anbieter';
 
-   String get lblCity => 'City';
+  String get lblCity => 'City';
 
   @override
   String get buildingno => 'Building Name';
 
-   @override
+  @override
   String get apartmentno => 'Apartment Number : ';
 
+  @override
+  String get remove => 'Remove';
+
+  @override
+  String get chooseImages => "Choose Images";
 
   @override
   String get lblShowingOnly4Handyman => 'Nur 4 Handwerker zeigen';

@@ -21,6 +21,12 @@ class LanguageHi extends Languages {
   String get apartmentno => 'Apartment Number : ';
 
   @override
+  String get chooseImages => "Choose Images";
+
+  @override
+  String get remove => 'Remove';
+
+  @override
   String get lblShowingOnly4Handyman => 'केवल 4 अप्रेंटिस दिखा रहा है';
 
   @override

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:handyman_provider_flutter/main.dart';
 import 'package:handyman_provider_flutter/models/attachment_model.dart';
 import 'package:handyman_provider_flutter/models/booking_list_response.dart';
@@ -19,6 +21,7 @@ class BookingDetailResponse {
   CouponData? couponData;
   List<TaxData>? taxes;
   List<ServiceProof>? serviceProof;
+  List<File>? imageList;
   PostJobData? postRequestDetail;
 
   bool get isMe => handymanData.validate().isNotEmpty
