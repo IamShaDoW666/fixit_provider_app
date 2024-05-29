@@ -27,18 +27,33 @@ Map<String, String> buildHeaderTokens({
 
   Map<String, String> header = {};
 
-  if (appStore.isLoggedIn && extraKeys.containsKey('isStripePayment') && extraKeys['isStripePayment']) {
-    header.putIfAbsent(HttpHeaders.contentTypeHeader, () => 'application/x-www-form-urlencoded');
-    header.putIfAbsent(HttpHeaders.authorizationHeader, () => 'Bearer ${extraKeys!['stripeKeyPayment']}');
-  } else if (appStore.isLoggedIn && extraKeys.containsKey('isFlutterWave') && extraKeys['isFlutterWave']) {
-    header.putIfAbsent(HttpHeaders.authorizationHeader, () => "Bearer ${extraKeys!['flutterWaveSecretKey']}");
-  } else if (appStore.isLoggedIn && extraKeys.containsKey('isSadadPayment') && extraKeys['isSadadPayment']) {
+  if (appStore.isLoggedIn &&
+      extraKeys.containsKey('isStripePayment') &&
+      extraKeys['isStripePayment']) {
+    header.putIfAbsent(HttpHeaders.contentTypeHeader,
+        () => 'application/x-www-form-urlencoded');
+    header.putIfAbsent(HttpHeaders.authorizationHeader,
+        () => 'Bearer ${extraKeys!['stripeKeyPayment']}');
+  } else if (appStore.isLoggedIn &&
+      extraKeys.containsKey('isFlutterWave') &&
+      extraKeys['isFlutterWave']) {
+    header.putIfAbsent(HttpHeaders.authorizationHeader,
+        () => "Bearer ${extraKeys!['flutterWaveSecretKey']}");
+  } else if (appStore.isLoggedIn &&
+      extraKeys.containsKey('isSadadPayment') &&
+      extraKeys['isSadadPayment']) {
     header.putIfAbsent(HttpHeaders.contentTypeHeader, () => 'application/json');
-    if (extraKeys['sadadToken'].validate().isNotEmpty) header.putIfAbsent(HttpHeaders.authorizationHeader, () => extraKeys!['sadadToken']);
+    if (extraKeys['sadadToken'].validate().isNotEmpty)
+      header.putIfAbsent(
+          HttpHeaders.authorizationHeader, () => extraKeys!['sadadToken']);
   } else {
-    if (appStore.isLoggedIn) header.putIfAbsent(HttpHeaders.authorizationHeader, () => 'Bearer ${appStore.token}');
-    header.putIfAbsent(HttpHeaders.contentTypeHeader, () => 'application/json; charset=utf-8');
-    header.putIfAbsent(HttpHeaders.acceptHeader, () => 'application/json; charset=utf-8');
+    if (appStore.isLoggedIn)
+      header.putIfAbsent(
+          HttpHeaders.authorizationHeader, () => 'Bearer ${appStore.token}');
+    header.putIfAbsent(
+        HttpHeaders.contentTypeHeader, () => 'application/json; charset=utf-8');
+    header.putIfAbsent(
+        HttpHeaders.acceptHeader, () => 'application/json; charset=utf-8');
   }
   header.putIfAbsent(HttpHeaders.cacheControlHeader, () => 'no-cache');
   header.putIfAbsent('Access-Control-Allow-Headers', () => '');
@@ -65,13 +80,34 @@ Future<Response> buildHttpResponse(
 }) async {
   if (await isNetworkAvailable()) {
     var headers = buildHeaderTokens(extraKeys: extraKeys);
+    if (appStore.selectedLanguageCode.isNotEmpty) {
+      var locale = appStore.selectedLanguageCode;
+      if (method == HttpMethodType.GET) {
+        if (endPoint.contains('?')) {
+          endPoint = "$endPoint&locale=$locale";
+        } else {
+          endPoint = "$endPoint?locale=$locale";
+        }
+      }
+      if (request != null) {
+        request = {
+          ...request,
+          'locale': appStore.selectedLanguageCode,
+        };
+      } else {
+        request = {
+          'locale': appStore.selectedLanguageCode,
+        };
+      }
+    }
     Uri url = buildBaseUrl(endPoint);
 
     Response response;
 
     if (method == HttpMethodType.POST) {
       // log('Request: ${jsonEncode(request)}');
-      response = await http.post(url, body: jsonEncode(request), headers: headers);
+      response =
+          await http.post(url, body: jsonEncode(request), headers: headers);
     } else if (method == HttpMethodType.DELETE) {
       response = await delete(url, headers: headers);
     } else if (method == HttpMethodType.PUT) {
@@ -94,7 +130,8 @@ Future<Response> buildHttpResponse(
 
     if (appStore.isLoggedIn && response.statusCode == 401) {
       return await reGenerateToken().then((value) async {
-        return await buildHttpResponse(endPoint, method: method, request: request, extraKeys: extraKeys);
+        return await buildHttpResponse(endPoint,
+            method: method, request: request, extraKeys: extraKeys);
       }).catchError((e) {
         throw errorSomethingWentWrong;
       });
@@ -106,7 +143,10 @@ Future<Response> buildHttpResponse(
   }
 }
 
-Future handleResponse(Response response, {HttpResponseType httpResponseType = HttpResponseType.JSON, bool? avoidTokenError, bool? isSadadPayment}) async {
+Future handleResponse(Response response,
+    {HttpResponseType httpResponseType = HttpResponseType.JSON,
+    bool? avoidTokenError,
+    bool? isSadadPayment}) async {
   if (!await isNetworkAvailable()) {
     throw errorInternetNotAvailable;
   }
@@ -172,13 +212,16 @@ Future<void> reGenerateToken() async {
   });
 }
 
-Future<MultipartRequest> getMultiPartRequest(String endPoint, {String? baseUrl}) async {
+Future<MultipartRequest> getMultiPartRequest(String endPoint,
+    {String? baseUrl}) async {
   String url = '${baseUrl ?? buildBaseUrl(endPoint).toString()}';
   return MultipartRequest('POST', Uri.parse(url));
 }
 
-Future<void> sendMultiPartRequest(MultipartRequest multiPartRequest, {Function(dynamic)? onSuccess, Function(dynamic)? onError}) async {
-  http.Response response = await http.Response.fromStream(await multiPartRequest.send());
+Future<void> sendMultiPartRequest(MultipartRequest multiPartRequest,
+    {Function(dynamic)? onSuccess, Function(dynamic)? onError}) async {
+  http.Response response =
+      await http.Response.fromStream(await multiPartRequest.send());
 
   apiPrint(
       url: multiPartRequest.url.toString(),

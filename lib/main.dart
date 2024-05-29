@@ -29,7 +29,6 @@ import 'package:handyman_provider_flutter/utils/configs.dart';
 import 'package:handyman_provider_flutter/utils/constant.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
-
 import 'app_theme.dart';
 import 'models/booking_list_response.dart';
 import 'models/booking_status_response.dart';
