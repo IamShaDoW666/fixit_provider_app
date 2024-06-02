@@ -7,7 +7,6 @@ import 'package:handyman_provider_flutter/auth/change_password_screen.dart';
 import 'package:handyman_provider_flutter/auth/edit_profile_screen.dart';
 import 'package:handyman_provider_flutter/auth/sign_in_screen.dart';
 import 'package:handyman_provider_flutter/components/cached_image_widget.dart';
-import 'package:handyman_provider_flutter/components/theme_selection_dailog.dart';
 import 'package:handyman_provider_flutter/handyman/component/handyman_comission_component.dart';
 import 'package:handyman_provider_flutter/handyman/component/handyman_experience_widget.dart';
 import 'package:handyman_provider_flutter/main.dart';
